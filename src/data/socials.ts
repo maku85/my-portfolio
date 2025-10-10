@@ -18,7 +18,7 @@ export const socials: Social[] = [
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/mauro-cunsolo/",
-    color: "blue-700",
+    color: "blue-800",
     icon: FaLinkedin,
   },
   {

@@ -17,7 +17,7 @@ export default function Projects() {
   const t = useTranslations("ProjectsPage");
 
   return (
-    <main className="pb-12 px-4">
+    <main className="pt-8 pb-12 px-4">
       {projects.length === 0 && (
         <div className="text-center text-gray-600 mt-20">
           <p className="text-2xl mb-4">{t("noProjects")}</p>
@@ -44,7 +44,6 @@ export default function Projects() {
             buttonHref={project.buttonHref}
           />
         ))}
-        shuffleLabel="Shake!"
       />
     </main>
   );

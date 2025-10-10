@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <main className="pb-12 px-4">
-      <div className="text-center opacity-70 mt-10 md:mt-4 mb-2">
+      <div className="text-center opacity-70 mt-10 md:mt-4 mb-6">
         {t("subtitle")}
       </div>
 

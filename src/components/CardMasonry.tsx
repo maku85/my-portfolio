@@ -44,7 +44,7 @@ const shakeStyle = `
 
 const CardMasonry: React.FC<CardMasonryProps> = ({
   cards,
-  shuffleLabel = "Shake!",
+  shuffleLabel,
 }) => {
   const [cardList, setCardList] = useState(cards);
   const [draggedIdx, setDraggedIdx] = useState<number | null>(null);
@@ -67,18 +67,22 @@ const CardMasonry: React.FC<CardMasonryProps> = ({
 
   return (
     <div>
-      <style>{shakeStyle}</style>
-      <div className="max-w-6xl mx-auto flex justify-end mb-6">
-        {cardList.length > 1 && (
-          <button
-            type="button"
-            onClick={handleShuffle}
-            className="px-4 py-2 bg-primary text-white rounded-md font-semibold hover:bg-primary-dark transition"
-          >
-            {shuffleLabel}
-          </button>
-        )}
-      </div>
+      {shuffleLabel && (
+        <>
+          <style>{shakeStyle}</style>
+          <div className="max-w-6xl mx-auto flex justify-end mb-6">
+            {cardList.length > 1 && (
+              <button
+                type="button"
+                onClick={handleShuffle}
+                className="px-4 py-2 bg-primary text-white rounded-md font-semibold hover:bg-primary-dark transition"
+              >
+                {shuffleLabel}
+              </button>
+            )}
+          </div>
+        </>
+      )}
       <div className="max-w-6xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
         <ul>
           {cardList.map((CardComponent, idx) => (

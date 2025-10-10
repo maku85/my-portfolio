@@ -6,12 +6,11 @@ import { libraries } from "@/data/libraries";
 
 export default function NpmProjects() {
   return (
-    <main>
+    <main className="pt-8 pb-12 px-4">
       <CardMasonry
         cards={libraries.map((project) => () => (
           <NpmCard key={project.name} project={project} />
         ))}
-        shuffleLabel="Shake!"
       />
     </main>
   );
