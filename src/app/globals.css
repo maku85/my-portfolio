@@ -58,7 +58,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: url("https://www.whitepress.com/web/images/link/hero-bg.svg");
+  background-image: url("/hero-bg.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
