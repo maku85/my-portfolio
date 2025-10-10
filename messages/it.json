@@ -1,0 +1,59 @@
+{
+  "AboutCard": {
+    "title": "Chi sono",
+    "text": "Sono Mauro, sviluppatore backend appassionato di web, open source e creatività digitale. Amo sperimentare con nuove tecnologie, animazioni e giochi. Nel tempo libero contribuisco a progetti open source e sviluppo prototipi interattivi.",
+    "curiosity": "Curioso, creativo e sempre pronto a imparare qualcosa di nuovo.",
+    "specialization": "Specializzato in Node.js e JavaScript.",
+    "belief": "Credo nella condivisione della conoscenza e nella collaborazione."
+  },
+  "AvailabilityCard": {
+    "title": "Disponibilità",
+    "subtitle": "Lavoriamo insieme",
+    "text": "Sono aperto a nuove opportunità lavorative e collaborazioni. Se sei interessato a lavorare con me o semplicemente vuoi discutere di un progetto, non esitare a contattarmi!",
+    "buttonLabel": "Contattami",
+    "opportunity": "Aperto a nuove opportunità!"
+  },
+  "ExperiencesCard": {
+    "title": "Esperienze Lavorative",
+    "subtitle": "Ruoli & Aziende",
+    "text": "Alcune delle mie esperienze professionali:",
+    "buttonLabel": "Vai al profilo LinkedIn"
+  },
+  "GithubStatsCard": {
+    "title": "Statistiche GitHub"
+  },
+  "HomePage": {
+    "subtitle": "Un appassionato sviluppatore Backend e un sostenitore dell'Open Source"
+  },
+  "LibrariesCard": {
+    "title": "Le mie librerie npm",
+    "subtitle": "Pacchetti pubblicati",
+    "text": "Scopri e installa le librerie npm che ho sviluppato e pubblicato.",
+    "buttonLabel": "Vai alle librerie"
+  },
+  "ProjectsCard": {
+    "title": "I miei progetti",
+    "text": "Scopri tutti i progetti che ho realizzato nelle diverse aree di sviluppo.",
+    "buttonLabel": "Vai ai progetti"
+  },
+  "ProjectsPage": {
+    "noProjects": "Nessun progetto disponibile.",
+    "checkBackLater": "Controlla di nuovo più tardi!"
+  },
+  "SkillsCard": {
+    "title": "Competenze Tecniche",
+    "subtitle": "Stack & Tools",
+    "text": "Le principali tecnologie e strumenti che utilizzo:"
+  },
+  "SocialsCard": {
+    "title": "I miei Social",
+    "subtitle": "Seguimi online",
+    "text": "Resta in contatto e scopri i miei ultimi aggiornamenti:"
+  },
+  "WIPCard": {
+    "title": "Attività in corso",
+    "subtitle": "Portfolio & Open Source",
+    "text": "Sto sviluppando nuove funzionalità per il mio portfolio e contribuendo a progetti open source. Seguimi su GitHub per aggiornamenti!",
+    "buttonLabel": "Vai a GitHub"
+  }
+}

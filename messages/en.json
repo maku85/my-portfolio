@@ -1,0 +1,59 @@
+{
+  "AboutCard": {
+    "title": "Who I Am",
+    "text": "I'm Mauro Cunsolo, a passionate backend developer with a love for web, open source, and digital creativity. I enjoy experimenting with new technologies, animations, and games. In my free time, I contribute to open source projects and develop interactive prototypes.",
+    "curiosity": "Curious, creative, and always eager to learn something new.",
+    "specialization": "Specialized in Node.js and JavaScript.",
+    "belief": "I believe in sharing knowledge and collaboration."
+  },
+  "AvailabilityCard": {
+    "title": "Availability",
+    "subtitle": "Let's Work Together",
+    "text": "I'm open to new job opportunities and collaborations. If you're interested in working with me or just want to discuss a project, don't hesitate to reach out!",
+    "buttonLabel": "Contact Me",
+    "opportunity": "Open to new opportunities!"
+  },
+  "ExperiencesCard": {
+    "title": "Work Experiences",
+    "subtitle": "Roles & Companies",
+    "text": "Some of my professional experiences:",
+    "buttonLabel": "Go to LinkedIn Profile"
+  },
+  "GithubStatsCard": {
+    "title": "GitHub Stats"
+  },
+  "HomePage": {
+    "subtitle": "A passionate Backend Developer & Open Source Enthusiast"
+  },
+  "LibrariesCard": {
+    "title": "My npm Libraries",
+    "subtitle": "Published Packages",
+    "text": "Discover and install the npm libraries I've developed and published.",
+    "buttonLabel": "Go to Libraries"
+  },
+  "ProjectsCard": {
+    "title": "My Projects",
+    "text": "Discover all the projects I've created in various development areas.",
+    "buttonLabel": "Go to Projects"
+  },
+  "ProjectsPage": {
+    "noProjects": "No projects available.",
+    "checkBackLater": "Please check back later!"
+  },
+  "SkillsCard": {
+    "title": "Technical Skills",
+    "subtitle": "Stack & Tools",
+    "text": "The main technologies and tools I use:"
+  },
+  "SocialsCard": {
+    "title": "My Socials",
+    "subtitle": "Follow Me Online",
+    "text": "Stay in touch and discover my latest updates:"
+  },
+  "WIPCard": {
+    "title": "Work In Progress",
+    "subtitle": "Portfolio & Open Source",
+    "text": "I'm developing new features for my portfolio and contributing to open source projects. Follow me on GitHub for updates!",
+    "buttonLabel": "Go to GitHub"
+  }
+}
