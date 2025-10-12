@@ -10,15 +10,6 @@ module.exports = {
         sans: ["Inter var", "Inter", "sans-serif"],
         raleway: ["Raleway", "sans-serif"],
       },
-      colors: {
-        primary: {
-          DEFAULT: "#4D96FF",
-          dark: "#163031",
-        },
-        accent: {
-          DEFAULT: "#F59E42",
-        },
-      },
     },
   },
 };

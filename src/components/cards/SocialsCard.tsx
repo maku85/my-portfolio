@@ -16,7 +16,7 @@ export default function SocialsCard() {
             target="_blank"
             rel="noopener noreferrer"
             title={social.name}
-            className={`text-${social.color} hover:text-accent transition text-3xl`}
+            className={`text-${social.color} dark:text-blue-200 hover:text-accent transition text-3xl`}
           >
             <social.icon />
           </a>

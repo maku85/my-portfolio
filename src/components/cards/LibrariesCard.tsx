@@ -21,7 +21,7 @@ export default function LibrariesCard() {
           {libraries.slice(0, 3).map((lib) => (
             <li key={lib.name}>
               <span className="font-semibold text-primary">{lib.name}</span>
-              <span className="text-sm text-gray-500 ml-2">
+              <span className="text-sm text-gray-500 dark:text-blue-200 ml-2">
                 {lib.description}
               </span>
             </li>

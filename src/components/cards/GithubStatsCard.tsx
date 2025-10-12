@@ -13,7 +13,7 @@ export default function GithubStatsCard() {
         alt="GitHub Stats"
         width={500}
         height={200}
-        className="rounded-lg shadow"
+        className="rounded-lg shadow dark:bg-gray-800"
         unoptimized
       />
       <div className="mt-4">
@@ -22,7 +22,7 @@ export default function GithubStatsCard() {
           alt="GitHub Streak"
           width={500}
           height={200}
-          className="rounded-lg shadow"
+          className="rounded-lg shadow dark:bg-gray-800"
           unoptimized
         />
       </div>

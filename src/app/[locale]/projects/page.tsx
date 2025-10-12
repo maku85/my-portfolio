@@ -19,7 +19,7 @@ export default function Projects() {
   return (
     <main className="pt-8 pb-12 px-4">
       {projects.length === 0 && (
-        <div className="text-center text-gray-600 mt-20">
+        <div className="text-center text-gray-600 dark:text-blue-200 mt-20">
           <p className="text-2xl mb-4">{t("noProjects")}</p>
           <p className="mb-2">{t("checkBackLater")}</p>
           <div className="flex justify-center space-x-4 mt-4">

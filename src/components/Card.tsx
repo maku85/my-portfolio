@@ -43,7 +43,8 @@ export default function Card({
 
   return (
     <div
-      className={`relative bg-white rounded-md shadow-sm overflow-hidden transition hover:shadow-lg hover:-translate-y-1 duration-300 flex flex-col ${className}`}
+      className={`relative rounded-md shadow-sm overflow-hidden transition hover:shadow-lg hover:-translate-y-1 duration-300 flex flex-col ${className}
+        bg-card-background border border-gray-100 dark:border-gray-700`}
     >
       {imageUrl && (
         <Image
@@ -51,7 +52,7 @@ export default function Card({
           alt={title || subtitle || "Card image"}
           width={400}
           height={200}
-          className="w-full object-cover"
+          className="w-full object-cover bg-white"
           priority
           draggable={false}
           unoptimized
@@ -72,11 +73,19 @@ export default function Card({
 
       {title || subtitle || text || children || buttonLabel ? (
         <div className="relative p-6 flex flex-col gap-2 flex-1">
-          {title && <h3 className="text-2xl font-bold">{title}</h3>}
-          {subtitle && (
-            <h4 className="text-md font-semibold text-gray-800">{subtitle}</h4>
+          {title && (
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-primary">
+              {title}
+            </h3>
           )}
-          {text && <p className="text-gray-500 text-sm">{text}</p>}
+          {subtitle && (
+            <h4 className="text-md font-semibold text-gray-800 dark:text-blue-200">
+              {subtitle}
+            </h4>
+          )}
+          {text && (
+            <p className="text-gray-500 dark:text-gray-300 text-sm">{text}</p>
+          )}
           {children}
           {buttonLabel &&
             (buttonHref ? (
