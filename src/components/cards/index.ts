@@ -7,6 +7,7 @@ import LibrariesCard from "./LibrariesCard";
 import ProjectsCard from "./ProjectsCard";
 import SkillsCard from "./SkillsCard";
 import SocialsCard from "./SocialsCard";
+import SpotifyCard from "./SpotifyCard";
 import WelcomeCard from "./WelcomeCard";
 import WIPCard from "./WIPCard";
 
@@ -21,6 +22,7 @@ export const initialCards = [
   SkillsCard,
   GithubStatsCard,
   DevNewsCard,
+  SpotifyCard,
 
   // AvailabilityCard,
 ];
