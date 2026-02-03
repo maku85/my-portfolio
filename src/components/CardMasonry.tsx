@@ -42,10 +42,7 @@ const shakeStyle = `
 }
 `;
 
-const CardMasonry: React.FC<CardMasonryProps> = ({
-  cards,
-  shuffleLabel,
-}) => {
+const CardMasonry: React.FC<CardMasonryProps> = ({ cards, shuffleLabel }) => {
   const [cardList, setCardList] = useState(cards);
   const [draggedIdx, setDraggedIdx] = useState<number | null>(null);
   const [shake, setShake] = useState(false);

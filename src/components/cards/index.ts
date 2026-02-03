@@ -1,6 +1,7 @@
 import AboutCard from "./AboutCard";
 import AvailabilityCard from "./AvailabilityCard";
 import DevNewsCard from "./DevNewsCard";
+import DontClickRed from "../games/DontClickRed/DontClickRed";
 import ExperiencesCard from "./ExperiencesCard";
 import GithubStatsCard from "./GithubStatsCard";
 import LibrariesCard from "./LibrariesCard";
@@ -22,6 +23,7 @@ export const initialCards = [
   SkillsCard,
   GithubStatsCard,
   DevNewsCard,
+  DontClickRed,
   SpotifyCard,
 
   // AvailabilityCard,
