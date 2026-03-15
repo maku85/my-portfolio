@@ -5,11 +5,10 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 
 import "../globals.css";
-import { routing } from "@/i18n/routing";
 
 import Footer from "@/components/Footer";
 import MotionContainer from "@/components/MotionContainer";
-import Navbar from "@/components/Navbar";
+import { routing } from "@/i18n/routing";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -55,7 +54,6 @@ export default async function RootLayout({
         className={`${lato.variable} ${raleway.variable} antialiased min-h-screen flex flex-col`}
       >
         <NextIntlClientProvider>
-          <Navbar />
           <Container>
             <MotionContainer>{children}</MotionContainer>
           </Container>

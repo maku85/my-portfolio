@@ -13,6 +13,32 @@
     "buttonLabel": "Contact Me",
     "opportunity": "Open to new opportunities!"
   },
+  "GitHubIssuesCard": {
+    "title": "Open Source",
+    "subtitle": "Contribution Opportunities",
+    "description": "Selected issues for open source contribution (JS/TS):",
+    "buttonLabel": "Explore more issues",
+    "loading": "Searching for opportunities...",
+    "error": "Error loading issues.",
+    "noIssues": "No opportunities found at the moment."
+  },
+  "OpenSourcePage": {
+    "title": "Open Source Opportunities",
+    "subtitle": "Contribute to exciting projects",
+    "filterByLanguage": "Filter by language",
+    "filterByLabel": "Filter by label",
+    "allLanguages": "All languages",
+    "allLabels": "All labels",
+    "backToHome": "Back to Home",
+    "noIssuesFound": "No issues found with selected filters.",
+    "retry": "Retry",
+    "loading": "Loading issues...",
+    "loadMore": "Load more issues",
+    "searchPlaceholder": "Search by keyword...",
+    "newBadge": "New",
+    "contributingGuide": "Contributing Guide",
+    "openedOn": "Opened on"
+  },
   "ExperiencesCard": {
     "title": "Work Experiences",
     "subtitle": "Roles & Companies",
@@ -36,6 +62,19 @@
     "text": "Discover all the projects I've created in various development areas.",
     "buttonLabel": "Go to Projects"
   },
+  "StoriesCard": {
+    "title": "My Short Stories",
+    "text": "A collection of short stories and thoughts from my portfolio.",
+    "buttonLabel": "Read"
+  },
+  "StoriesPage": {
+    "title": "Short Stories",
+    "subtitle": "Stories, thoughts, and adventures",
+    "backToHome": "Back to Home",
+    "noStories": "No stories available at the moment.",
+    "readMore": "Read more",
+    "viewCollection": "View full collection"
+  },
   "ProjectsPage": {
     "noProjects": "No projects available.",
     "checkBackLater": "Please check back later!"
@@ -55,5 +94,15 @@
     "subtitle": "Portfolio & Open Source",
     "text": "I'm developing new features for my portfolio and contributing to open source projects. Follow me on GitHub for updates!",
     "buttonLabel": "Go to GitHub"
+  },
+  "GamesCard": {
+    "title": "Arcade Zone",
+    "text": "Take a break and have fun with some interactive mini-games I've developed for this portfolio.",
+    "buttonLabel": "Play now"
+  },
+  "GamesPage": {
+    "title": "Arcade Zone",
+    "subtitle": "A collection of small interactive experiments and games built with Canvas and React.",
+    "backToHome": "Back to Home"
   }
 }

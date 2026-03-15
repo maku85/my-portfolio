@@ -13,6 +13,32 @@
     "buttonLabel": "Contattami",
     "opportunity": "Aperto a nuove opportunità!"
   },
+  "GitHubIssuesCard": {
+    "title": "Open Source",
+    "subtitle": "Opportunità di contributo",
+    "description": "Issue selezionate per contribuire a progetti open source (JS/TS):",
+    "buttonLabel": "Esplora altre issue",
+    "loading": "Ricerca opportunità...",
+    "error": "Errore nel caricamento delle issue.",
+    "noIssues": "Nessuna opportunità trovata al momento."
+  },
+  "OpenSourcePage": {
+    "title": "Opportunità Open Source",
+    "subtitle": "Contribuisci a progetti entusiasmanti",
+    "filterByLanguage": "Filtra per linguaggio",
+    "filterByLabel": "Filtra per etichetta",
+    "allLanguages": "Tutti i linguaggi",
+    "allLabels": "Tutte le etichette",
+    "backToHome": "Torna alla Home",
+    "noIssuesFound": "Nessuna issue trovata con i filtri selezionati.",
+    "retry": "Riprova",
+    "loading": "Caricamento issue in corso...",
+    "loadMore": "Carica altre issue",
+    "searchPlaceholder": "Cerca per parola chiave...",
+    "newBadge": "Nuova",
+    "contributingGuide": "Guida ai contributi",
+    "openedOn": "Aperta il"
+  },
   "ExperiencesCard": {
     "title": "Esperienze Lavorative",
     "subtitle": "Ruoli & Aziende",
@@ -36,9 +62,25 @@
     "text": "Scopri tutti i progetti che ho realizzato nelle diverse aree di sviluppo.",
     "buttonLabel": "Vai ai progetti"
   },
+  "StoriesCard": {
+    "title": "L'angolo delle storie",
+    "text": "Una serie di raccolte di varie storie e avventure che ho scritto nel tempo.",
+    "buttonLabel": "Leggi"
+  },
+  "StoriesPage": {
+    "title": "L'angolo delle storie",
+    "subtitle": "Raccolte di racconti e avventure",
+    "backToHome": "Torna alla Home",
+    "noStories": "Nessuna raccolta disponibile al momento.",
+    "readMore": "Leggi di più",
+    "viewCollection": "Visualizza la raccolta completa"
+  },
   "ProjectsPage": {
+    "backToHome": "Torna alla Home",
+    "checkBackLater": "Controlla di nuovo più tardi!",
     "noProjects": "Nessun progetto disponibile.",
-    "checkBackLater": "Controlla di nuovo più tardi!"
+    "title": "I miei progetti",
+    "subtitle": "Una selezione dei miei lavori più recenti e significativi."
   },
   "SkillsCard": {
     "title": "Competenze Tecniche",
@@ -55,5 +97,15 @@
     "subtitle": "Portfolio & Open Source",
     "text": "Sto sviluppando nuove funzionalità per il mio portfolio e contribuendo a progetti open source. Seguimi su GitHub per aggiornamenti!",
     "buttonLabel": "Vai a GitHub"
+  },
+  "GamesCard": {
+    "title": "Arcade Zone",
+    "text": "Fai una pausa e divertiti con alcuni mini-giochi interattivi che ho sviluppato.",
+    "buttonLabel": "Gioca ora"
+  },
+  "GamesPage": {
+    "title": "Arcade Zone",
+    "subtitle": "Una collezione di piccoli esperimenti interattivi e giochi realizzati con Canvas e React.",
+    "backToHome": "Torna alla Home"
   }
 }

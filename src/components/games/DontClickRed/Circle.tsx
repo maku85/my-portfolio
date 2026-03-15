@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-import { CircleData } from "./types";
+import type { CircleData } from "./types";
 
 interface CircleProps {
   circle: CircleData;

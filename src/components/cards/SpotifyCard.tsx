@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 
 const playlistUrl =
   "https://open.spotify.com/embed/playlist/2egffeuRciv9gP8Rb1lSOq";

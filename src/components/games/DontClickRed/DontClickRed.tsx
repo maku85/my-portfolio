@@ -2,11 +2,11 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FaHeart, FaTrophy, FaRedo, FaPlay } from "react-icons/fa";
+import { FaHeart, FaPlay, FaRedo, FaTrophy } from "react-icons/fa";
 
 import Card from "@/components/Card";
 import { Circle } from "./Circle";
-import { CircleData, CircleColor, GameState } from "./types";
+import type { CircleColor, CircleData, GameState } from "./types";
 
 const GAME_DURATION = 60;
 const INITIAL_SPEED = 1500;
@@ -39,7 +39,7 @@ export default function DontClickRed() {
   useEffect(() => {
     const saved = localStorage.getItem("dont-click-red-highscore");
     if (saved) {
-      setGameState((prev) => ({ ...prev, highScore: parseInt(saved) }));
+      setGameState((prev) => ({ ...prev, highScore: parseInt(saved, 10) }));
     }
   }, []);
 
@@ -138,7 +138,7 @@ export default function DontClickRed() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [gameState.isActive, endGame]);
+  }, [gameState.isActive, endGame, gameState.timeLeft]);
 
   useEffect(() => {
     if (gameState.isActive) {
@@ -147,7 +147,7 @@ export default function DontClickRed() {
     return () => {
       if (spawnRef.current) clearTimeout(spawnRef.current);
     };
-  }, [gameState.isActive]);
+  }, [gameState.isActive, spawnCircle]);
 
   const handleCircleClick = (id: string, color: string) => {
     if (!gameState.isActive) return;
