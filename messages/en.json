@@ -94,15 +94,5 @@
     "subtitle": "Portfolio & Open Source",
     "text": "I'm developing new features for my portfolio and contributing to open source projects. Follow me on GitHub for updates!",
     "buttonLabel": "Go to GitHub"
-  },
-  "GamesCard": {
-    "title": "Arcade Zone",
-    "text": "Take a break and have fun with some interactive mini-games I've developed for this portfolio.",
-    "buttonLabel": "Play now"
-  },
-  "GamesPage": {
-    "title": "Arcade Zone",
-    "subtitle": "A collection of small interactive experiments and games built with Canvas and React.",
-    "backToHome": "Back to Home"
   }
 }
