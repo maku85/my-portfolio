@@ -57,6 +57,11 @@
     "text": "Scopri e installa le librerie npm che ho sviluppato e pubblicato.",
     "buttonLabel": "Vai alle librerie"
   },
+  "NpmProjectsPage": {
+    "backToHome": "Torna alla Home",
+    "title": "Le mie librerie npm",
+    "subtitle": "Pacchetti pubblicati"
+  },
   "ProjectsCard": {
     "title": "I miei progetti",
     "text": "Scopri tutti i progetti che ho realizzato nelle diverse aree di sviluppo.",

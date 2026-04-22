@@ -57,6 +57,11 @@
     "text": "Discover and install the npm libraries I've developed and published.",
     "buttonLabel": "Go to Libraries"
   },
+  "NpmProjectsPage": {
+    "backToHome": "Back to Home",
+    "title": "My npm Libraries",
+    "subtitle": "Published Packages"
+  },
   "ProjectsCard": {
     "title": "My Projects",
     "text": "Discover all the projects I've created in various development areas.",

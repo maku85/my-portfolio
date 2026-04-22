@@ -154,33 +154,27 @@ export default function OpenSourcePage() {
   };
 
   return (
-    <main className="min-h-screen pt-20 pb-12 px-4 max-w-6xl mx-auto">
-      <div className="mt-10 mb-8">
+    <main className="pt-8 pb-12 px-4">
+      <div className="mt-10 mb-8 flex flex-col items-center">
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-2 text-center italic tracking-tighter">
+              {t("title")}
+          </h1>
+          <p className="text-slate-500 dark:text-slate-400 text-center max-w-md">
+              {t("subtitle")}
+          </p>
+      </div>
+
+      <div className="mb-4">
         <Link
           href="/"
-          className="inline-flex items-center text-primary hover:text-accent transition font-medium"
+          className="inline-flex items-center text-stone-500 hover:text-stone-800 dark:hover:text-stone-100 transition font-sans text-sm tracking-wider uppercase"
         >
           <FaArrowLeft className="mr-2" />
           {t("backToHome")}
         </Link>
       </div>
-      <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="flex-1">
-          <Link
-            href={`/${locale}`}
-            className="inline-flex items-center text-primary hover:underline mb-2 transition-colors font-bold text-sm"
-          >
-            <FaChevronLeft className="mr-2 text-[10px]" />
-            {t("backToHome")}
-          </Link>
-          <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tighter">
-            {t("title")}
-          </h1>
-          <p className="text-gray-600 dark:text-blue-200 mt-1 font-medium">
-            {t("subtitle")}
-          </p>
-        </div>
 
+      <div className="mb-8 flex flex-col md:flex-row md:items-end justify-end">
         <div className="relative w-full md:w-80 group">
           <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors" />
           <input
