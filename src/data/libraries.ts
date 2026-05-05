@@ -20,6 +20,13 @@ export const libraries: Library[] = [
     link: "https://github.com/maku85/vemora",
   },
   {
+    name: "mongoose-lens",
+    installCommand: "npm install mongoose-lens",
+    description:
+      "Slow query interceptor and index advisor for Mongoose 8+. Automatically runs explain() on slow queries, detects COLLSCAN/SORT stages, and suggests optimal indexes following the ESR rule.",
+    link: "https://github.com/maku85/mongoose-lens",
+  },
+  {
     name: "mongoose-currency-convert",
     installCommand: "npm install mongoose-currency-convert",
     description:
