@@ -26,14 +26,6 @@ export const projects: Project[] = [
     buttonHref: "https://www.mindutrition.li/",
   },
   {
-    imageUrl: "/projects/rested-minds.webp",
-    name: "Rested Minds",
-    description: "Psychology and mental health website.",
-    buttonLabel: "View site",
-    buttonIcon: null,
-    buttonHref: "https://www.silviarecchionepsicologa.com/",
-  },
-  {
     imageUrl: "/projects/solkai.webp",
     name: "Solkai",
     description: "Premium padel rackets web shop.",
