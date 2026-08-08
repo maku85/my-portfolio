@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Lato, Raleway } from "next/font/google";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 
 import "../globals.css";
@@ -61,6 +62,13 @@ export default async function RootLayout({
         </NextIntlClientProvider>
 
         <Analytics />
+        {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN && (
+          <Script
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );
