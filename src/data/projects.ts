@@ -33,4 +33,12 @@ export const projects: Project[] = [
     buttonIcon: null,
     buttonHref: "https://www.solkaisports.com/",
   },
+  {
+    imageUrl: "/projects/benchyx.webp",
+    name: "Benchyx",
+    description: "Free online developer tools: JSON, JWT, regex, diff, and more.",
+    buttonLabel: "View site",
+    buttonIcon: null,
+    buttonHref: "https://maku85.github.io/benchyx/",
+  },
 ];
