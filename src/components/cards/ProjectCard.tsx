@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type React from "react";
 
 interface ProjectCardProps {
@@ -22,16 +23,12 @@ export default function ProjectCard({
   return (
     <div className="relative rounded-xl shadow-md overflow-hidden transition hover:shadow-lg hover:-translate-y-1 duration-300 h-80 flex">
       {imageUrl && (
-        <div
-          role="img"
-          aria-label={title || subtitle || "Card image"}
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{
-            backgroundImage: `url(${imageUrl})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
+        <Image
+          src={imageUrl}
+          alt={title || subtitle || "Project image"}
+          fill
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className="absolute inset-0 object-cover"
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />

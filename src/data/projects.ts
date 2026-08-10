@@ -36,7 +36,8 @@ export const projects: Project[] = [
   {
     imageUrl: "/projects/benchyx.webp",
     name: "Benchyx",
-    description: "Free online developer tools: JSON, JWT, regex, diff, and more.",
+    description:
+      "Free online developer tools: JSON, JWT, regex, diff, and more.",
     buttonLabel: "View site",
     buttonIcon: null,
     buttonHref: "https://maku85.github.io/benchyx/",

@@ -49,7 +49,30 @@
     "title": "Statistiche GitHub"
   },
   "HomePage": {
+    "title": "Mauro Cunsolo",
     "subtitle": "Un appassionato sviluppatore Backend e un sostenitore dell'Open Source"
+  },
+  "Metadata": {
+    "site": {
+      "title": "Mauro Cunsolo | Sviluppatore Backend & Open Source Enthusiast",
+      "description": "Portfolio personale di Mauro Cunsolo, sviluppatore backend specializzato in Node.js e JavaScript, appassionato di open source e sviluppo web."
+    },
+    "home": {
+      "title": "Mauro Cunsolo | Sviluppatore Backend & Open Source Enthusiast",
+      "description": "Portfolio personale di Mauro Cunsolo, sviluppatore backend specializzato in Node.js e JavaScript, appassionato di open source e sviluppo web."
+    },
+    "projects": {
+      "title": "Progetti",
+      "description": "Una selezione di progetti web realizzati da Mauro Cunsolo, tra app, siti e strumenti per sviluppatori."
+    },
+    "npm": {
+      "title": "Librerie npm",
+      "description": "Pacchetti npm open source pubblicati e mantenuti da Mauro Cunsolo."
+    },
+    "opensource": {
+      "title": "Opportunità Open Source",
+      "description": "Issue open source selezionate a cui contribuire, filtrabili per linguaggio ed etichetta."
+    }
   },
   "LibrariesCard": {
     "title": "Le mie librerie npm",

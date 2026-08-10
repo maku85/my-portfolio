@@ -1,24 +1,22 @@
-"use client";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-import { useTranslations } from "next-intl";
+import HomeClient from "./HomeClient";
 
-import CardMasonry from "@/components/CardMasonry";
-import { initialCards } from "@/components/cards";
-import Navbar from "@/components/Navbar";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata.home" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default function Home() {
-  const t = useTranslations("HomePage");
-
-  return (
-    <>
-      <Navbar />
-    <main className="pb-12 px-4">
-      <div className="text-center opacity-70 mt-10 md:mt-4 mb-6">
-        {t("subtitle")}
-      </div>
-
-      <CardMasonry cards={initialCards} shuffleLabel="Shake!" />
-    </main>
-    </>
-  );
+  return <HomeClient />;
 }

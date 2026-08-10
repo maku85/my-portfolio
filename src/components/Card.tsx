@@ -15,6 +15,7 @@ interface CardProps {
   buttonIcon?: React.ReactNode;
   buttonOnClick?: () => void;
   buttonHref?: string;
+  priority?: boolean;
 }
 
 export default function Card({
@@ -29,6 +30,7 @@ export default function Card({
   buttonIcon,
   buttonOnClick,
   buttonHref,
+  priority = false,
 }: CardProps) {
   const [external, setExternal] = useState(false);
 
@@ -53,9 +55,8 @@ export default function Card({
           width={400}
           height={200}
           className="w-full object-cover bg-white"
-          priority
+          priority={priority}
           draggable={false}
-          unoptimized
         />
       )}
 

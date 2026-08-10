@@ -49,7 +49,30 @@
     "title": "GitHub Stats"
   },
   "HomePage": {
+    "title": "Mauro Cunsolo",
     "subtitle": "A passionate Backend Developer & Open Source Enthusiast"
+  },
+  "Metadata": {
+    "site": {
+      "title": "Mauro Cunsolo | Backend Developer & Open Source Enthusiast",
+      "description": "Personal portfolio of Mauro Cunsolo, a backend developer specializing in Node.js and JavaScript, passionate about open source and web development."
+    },
+    "home": {
+      "title": "Mauro Cunsolo | Backend Developer & Open Source Enthusiast",
+      "description": "Personal portfolio of Mauro Cunsolo, a backend developer specializing in Node.js and JavaScript, passionate about open source and web development."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "A selection of web projects built by Mauro Cunsolo, spanning apps, websites, and developer tools."
+    },
+    "npm": {
+      "title": "npm Libraries",
+      "description": "Open source npm packages published and maintained by Mauro Cunsolo."
+    },
+    "opensource": {
+      "title": "Open Source Opportunities",
+      "description": "Curated open source issues to contribute to, filtered by language and label."
+    }
   },
   "LibrariesCard": {
     "title": "My npm Libraries",
@@ -81,8 +104,11 @@
     "viewCollection": "View full collection"
   },
   "ProjectsPage": {
+    "backToHome": "Back to Home",
+    "checkBackLater": "Please check back later!",
     "noProjects": "No projects available.",
-    "checkBackLater": "Please check back later!"
+    "title": "My Projects",
+    "subtitle": "A selection of my most recent and significant work."
   },
   "SkillsCard": {
     "title": "Technical Skills",

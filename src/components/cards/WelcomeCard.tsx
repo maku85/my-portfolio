@@ -1,5 +1,5 @@
 import Card from "@/components/Card";
 
 export default function WelcomeCard() {
-  return <Card imageUrl="/welcome.webp" />;
+  return <Card imageUrl="/welcome.webp" priority />;
 }
