@@ -31,6 +31,11 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
+  verification: {
+    other: {
+      "msvalidate.01": "F34D7F66818840D88DF443A4D8CF0E91",
+    },
+  },
 };
 
 const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
