@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Lato, Raleway } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -123,7 +122,6 @@ export default async function RootLayout({
           <Footer />
         </NextIntlClientProvider>
 
-        <Analytics />
         {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN && (
           <Script
             src="https://static.cloudflareinsights.com/beacon.min.js"

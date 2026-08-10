@@ -6,6 +6,9 @@ const EXCLUDE_USER = "maku85";
 type CacheEntry = { data: any; expires: number };
 const cache: Record<string, CacheEntry> = {};
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minuti
+const CACHE_CONTROL_HEADER = {
+  "Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600",
+};
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -33,7 +36,9 @@ export async function GET(req: NextRequest) {
   const cacheKey = GITHUB_API_URL;
   const now = Date.now();
   if (cache[cacheKey] && cache[cacheKey].expires > now) {
-    return NextResponse.json(cache[cacheKey].data);
+    return NextResponse.json(cache[cacheKey].data, {
+      headers: CACHE_CONTROL_HEADER,
+    });
   }
 
   try {
@@ -59,7 +64,7 @@ export async function GET(req: NextRequest) {
     // Store in cache
     cache[cacheKey] = { data, expires: now + CACHE_TTL_MS };
 
-    return NextResponse.json(data);
+    return NextResponse.json(data, { headers: CACHE_CONTROL_HEADER });
   } catch (error) {
     console.error("Error fetching GitHub issues:", error);
     return NextResponse.json(
