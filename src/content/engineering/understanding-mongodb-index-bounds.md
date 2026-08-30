@@ -189,15 +189,16 @@ per-element de-dup.
   (`$ne` / `$nin` / `$not`) on an array were not tested.
 - **`$or` up to two branches.** Three or more, nested `$or`, and `$or` with
   `$elemMatch` were not tested.
-- **No `$sort`, no plan cache.** Whether a range or `$elemMatch` shape's
-  `decisionWorks` (the plan-cache trial budget) follows this cost model is a
-  separate open experiment.
+- **No `$sort` here.** A separate experiment (09) covers blocking `SORT` vs
+  index-provided order and shows the replan frontier fires the same way for a
+  range bound width as for an equality's row count; `$elemMatch`'s
+  `decisionWorks` is still untested.
 - **Counters, not milliseconds.** Conclusions rest on `keysExamined` /
   `docsExamined` / `dupsDropped` / the stage chain, not `executionTimeMillis`.
 
-> TODO: still open — a range predicate's `decisionWorks` in the plan cache vs
-> this cost model; `$or` of 3+ branches with mixed indexability; array negation
-> and `$size`; the SBE engine.
+> TODO: still open — an `$elemMatch` shape's `decisionWorks` in the plan cache;
+> `$or` of 3+ branches with mixed indexability; array negation and `$size`; the
+> SBE engine.
 
 ## Takeaways
 
@@ -235,3 +236,7 @@ This note draws on:
 - **08 — Multikey indexes and array bounds:** the un-intersected two-sided range,
   `$elemMatch` vs dotted paths, `$all` as scan-plus-filter, and covering the
   scalar prefix of a multikey index.
+- **09 — `SORT`, range bounds, and the plan cache:** blocking-`SORT` cost is
+  `rows_in × row_size` (the feeding scan's `keysExamined`, one stage up); the
+  replan frontier fires the same way for a range bound width as for an
+  equality's row count.

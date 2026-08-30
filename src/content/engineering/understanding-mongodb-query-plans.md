@@ -50,9 +50,11 @@ mechanism, with the empirical parts called out explicitly.
 - **Reading the winning plan.** It's a tree of stages executed leaves-first. The
   ones that matter: `IXSCAN` (an index was used; `indexBounds` shows how tight),
   `FETCH` (documents pulled by `_id` after an `IXSCAN`), `COLLSCAN` (every
-  document examined), `SORT` (a blocking, in-memory sort — no index satisfied the
-  `sort()`, so the full result set is materialised and ordered in memory, subject
-  to the sort memory limit).
+  document examined), `SORT` (a blocking, in-memory sort — no index could yield
+  the `sort()` order in one directional scan, so the rows are buffered and
+  ordered in memory, spilling to disk past the sort memory limit; a `limit`
+  bounds it to a top-k, and if the sort field is in the scanned index it sorts
+  index keys rather than whole documents).
 - **Numbers to compare.** `nReturned` vs `totalKeysExamined` vs
   `totalDocsExamined`. `keysExamined` ≫ `nReturned` usually means the index scan
   is wide — but discount a multi-interval `$in` (one boundary probe per interval)
@@ -68,8 +70,8 @@ mechanism, with the empirical parts called out explicitly.
 
 ## Observations
 
-Working model — the trial/cache mechanics and the `COLLSCAN` behaviour are
-confirmed by testing; the blocking-`SORT` half is not yet:
+Working model — the trial/cache mechanics, the `COLLSCAN` behaviour and the
+blocking-`SORT` behaviour are all confirmed by testing:
 
 - MongoDB enumerates candidate plans from indexes whose key pattern is compatible
   with the query, runs them in a short **trial**, and keeps the one that made
@@ -82,11 +84,16 @@ confirmed by testing; the blocking-`SORT` half is not yet:
   parameter can yield a different `explain()` plan; and a *real* query may run a
   cached plan — chosen for an earlier data distribution and reused value-blind —
   that `explain()` will never show you. (Checked against `system.profile` in the
-  companion lab, Experiments 04–08.)
+  companion lab, Experiments 04–09.)
 - `COLLSCAN` and blocking `SORT` are the two stages almost always worth acting
-  on: the first means no index was usable at all, the second means an index was
-  usable for the filter but not for the order. Both are structural, not
-  data-dependent — which is why a tool can flag them without running anything.
+  on: the first means no index was usable at all, the second means no index
+  yields the requested order in one directional scan. `COLLSCAN` is structural —
+  a `COLLSCAN` at 1k rows is a `COLLSCAN` at 1M. A blocking `SORT` is mostly
+  structural but *not* fully data-independent: for a query that is `{range} +
+  sort`, the planner keeps a tight-filter + `SORT` plan only while the range is
+  very selective (~2% in testing) and switches to a wider sort-supplying scan —
+  with *no* `SORT` — once it isn't. Flagging the stage is still safe; predicting
+  whether it appears from the query text alone is not.
 - `IXSCAN` is *not* automatically fine. An index scan with `keysExamined` far
   above `nReturned`, or followed by a large `FETCH`, is still a bad plan.
 
@@ -96,9 +103,12 @@ confirmed by testing; the blocking-`SORT` half is not yet:
 > `decisionWorks × ratio` budget and the shape is replanned. `explain()` never
 > reads the cache, so "data vs cache" is only visible in `system.profile`
 > (`fromPlanCache`) or the mongod log.
-> TODO: verify with benchmark — a query sorting on `{ a: 1, b: 1 }` against an
-> index `{ a: 1, b: -1 }`; confirm it forces a `SORT` and measure the cost
-> against a matching-direction index.
+> Done (companion lab, Experiment 09): a query sorting `{ a: 1, b: 1 }` against
+> an index `{ a: 1, b: -1 }` does force a blocking `SORT` — but `{ a: -1, b: 1 }`
+> (the index's *exact mirror*) does not: the b-tree is walked backward. A single
+> reversed sort key is always free; only a *partial* direction conflict on a
+> compound sort needs the `SORT`. `SORT` cost is `rows_in × row_size` and scales
+> linearly with the feeding scan's `keysExamined`.
 
 ## Technical details
 
@@ -116,29 +126,37 @@ equality or ordering. It's a heuristic, not a law — it degrades with two
 independent range predicates, with `$in` (which sits between equality and range),
 and when a covered query changes the trade-off.
 
-**Why `COLLSCAN` / `SORT` are the automatable signals.** Neither depends on data
-distribution: a `COLLSCAN` is a `COLLSCAN` at 1k or 1M documents, and a blocking
-`SORT` always materialises the full result set. The *severity* scales with data,
-the *diagnosis* doesn't — so a heuristic can name the problem and propose an
-ESR-shaped index without executing a benchmark.
+**Why `COLLSCAN` / `SORT` are the automatable signals.** A `COLLSCAN` is a
+`COLLSCAN` at 1k or 1M documents — fully data-independent. A blocking `SORT`
+buffers its input (a `limit` bounds it to a top-k; the input is index keys if
+the sort field is in the scanned index, otherwise whole documents) and its
+*severity* scales with the row count. Its *appearance* is mostly structural, with
+one data-dependent exception — a `{range} + sort` query loses the `SORT` once the
+range stops being selective. Either way, once the stage is in the plan a
+heuristic can name it and propose an ESR-shaped index without a benchmark.
 
 **Recognising a potentially problematic query, from the plan alone:**
 
 - `COLLSCAN` on a collection that isn't tiny;
-- a `SORT` stage;
+- a blocking `SORT` stage (especially `SORT` *above* a `FETCH` — it is ordering
+  whole documents, not index keys);
 - `totalKeysExamined` ≫ `nReturned` (wide index scan — after discounting a
   multi-interval `$in` and multikey de-duplication, where the gap is expected);
 - `totalDocsExamined` ≫ `nReturned` (wasteful `FETCH` — rows dropped by a
   residual filter);
 - `$or` where one branch has no usable index (can force a `COLLSCAN` for the
   whole query);
-- a sort direction that doesn't match any index's key direction.
+- a compound sort whose per-key directions are a *partial* mismatch with the
+  index (e.g. sort `{a:1, b:1}` on index `{a:1, b:-1}`) — a single reversed key,
+  or a whole-pattern reversal, is served by a backward scan and is fine.
 
 ## Practical implications
 
-- A tool can safely flag `COLLSCAN` and blocking `SORT` and propose an ESR index,
-  because those are structural. It should not silently trust `IXSCAN` — the
-  examined-vs-returned ratio has to be checked too.
+- A tool can safely flag a `COLLSCAN` or a blocking `SORT` that is *in* a plan
+  and propose an ESR index — the diagnosis is reliable once the stage is there.
+  It should not silently trust `IXSCAN` (check the examined-vs-returned ratio),
+  nor promise that a `{range} + sort` query will keep its `SORT` — that flips
+  with the range's selectivity.
 - An index suggestion is a starting point for a human, not a migration. It has a
   write cost on every insert/update, it takes cache RAM, it may duplicate the
   prefix of an existing index, and it can shift the planner onto a worse plan for
@@ -193,9 +211,10 @@ spots:
 - A query plan is chosen by trial and cached per shape. `explain()` itself is
   cache-free and re-plans every call, so it is stable for fixed data and indexes
   — but a real query may run a different, cached plan it will not reveal.
-- `COLLSCAN` and blocking `SORT` are structural signals — safe to flag
-  automatically. `IXSCAN` needs the examined-vs-returned check before you trust
-  it.
+- `COLLSCAN` and blocking `SORT` are safe to flag automatically once they are in
+  the plan — but a `SORT` can appear or vanish with the range selectivity of a
+  `{range} + sort` query, so don't predict it from the query text. `IXSCAN`
+  needs the examined-vs-returned check before you trust it.
 - ESR is a reasonable default order for a suggested compound index, and a
   heuristic, not a rule.
 - A plan-reading tool like `mongoose-lens` is a *detector*, not a fixer: it
@@ -213,7 +232,7 @@ experiments on a deterministic seeded dataset (same seed → same data), each on
 running `explain("executionStats")` with no `hint()` and committing the raw
 output under `results/`. MongoDB 8.0.16, classic engine, single node. It is
 plan- and counter-based, not a latency benchmark, and still in progress (the
-`SORT`-interaction and aggregation experiments are not done yet).
+aggregation experiments are not done yet).
 
 Relevant so far:
 
@@ -234,3 +253,10 @@ Relevant so far:
   (`keysExamined > docsExamined` is normal), the un-intersected two-sided range,
   `$elemMatch` vs dotted paths, `$all` is not an index intersection, and covering
   the scalar prefix of a multikey index.
+- **09 — `SORT`, range bounds, and the plan cache**: an ESR index removes the
+  blocking `SORT` and the planner prefers it at equal `keysExamined`; a single
+  reversed sort key (or a whole-pattern reversal) is served by a backward scan,
+  a partial compound-direction conflict is not; `SORT` cost is linear in rows
+  fed in, and sits below the `FETCH` when the sort field is in the index; for a
+  `{range} + sort` query the planner drops the `SORT` for a wide streaming scan
+  at ~2% selectivity, accepting several times more `keysExamined`.

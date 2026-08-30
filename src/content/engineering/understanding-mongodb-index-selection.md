@@ -87,8 +87,8 @@ with `.hint()` forcing each candidate to measure the delta.
 
 ## Observations
 
-Working model — the trial-and-cache mechanics and the `COLLSCAN` rule below are
-confirmed by testing; `SORT` interaction is not yet:
+Working model — the trial-and-cache mechanics, the `COLLSCAN` rule and the
+`SORT` interaction below are confirmed by testing:
 
 - The planner enumerates candidate plans from indexes whose key pattern is
   compatible with the query shape, runs them in a short **trial** on real data,
@@ -128,7 +128,7 @@ Since tested (companion lab, Experiment 07), on `$or`:
 
 ## What surprised me
 
-Reproduced in the companion lab (Experiments 04–08, see the end of this note):
+Reproduced in the companion lab (Experiments 04–09, see the end of this note):
 
 - **A cached plan is reused value-blind, well past the point it still fits.** The
   plan cache keys on the query *shape*, not the values; a plan chosen while one
@@ -146,13 +146,22 @@ Reproduced in the companion lab (Experiments 04–08, see the end of this note):
   selective value and filters the rest. A compound index becomes multikey the
   moment one key is an array; it can still cover a projection of its scalar
   prefix, but never one of the array field.
+- **Sort direction is per-pattern, not per-key.** A query sorting `{a: 1, b: 1}`
+  against an index `{a: 1, b: -1}` *does* force a blocking `SORT` — but
+  `{a: -1, b: 1}` (the index's exact mirror) does not, and neither does a
+  single reversed sort key: the b-tree is walked backward. Only a *partial*
+  direction conflict on a compound sort needs the `SORT`.
+- **The planner will pick a much wider scan to avoid a blocking `SORT`.** For a
+  `{range} + sort` query it keeps the selective-filter + `SORT` plan only while
+  the range is very selective (~2%), then switches to a sort-supplying index
+  that scans far more keys — because a blocking stage produces nothing during
+  the trial, so a streaming plan out-ranks it. Add a `limit`, or an ESR index,
+  or `hint` the selective one.
 
 Still to reproduce:
 
 - A less selective index winning the trial because it produced enough results
   within the work budget before a more selective plan "warmed up".
-- Sort direction: an index `{a: 1, b: -1}` against a query sorting `{a: 1, b: 1}`
-  silently forcing a `SORT`.
 
 ## Practical implications
 
@@ -201,8 +210,7 @@ these claims under test: numbered experiments on a deterministic seeded dataset
 (same seed → same data), each running `explain("executionStats")` with **no
 `hint()`** and committing the raw output under `results/`. MongoDB 8.0.16,
 classic engine, single node. It reasons from plan shape and counters, not
-latency, and is still in progress (the `SORT` and aggregation experiments are not
-done).
+latency, and is still in progress (the aggregation experiments are not done).
 
 What it has settled so far, mapped to this note:
 
@@ -221,6 +229,12 @@ What it has settled so far, mapped to this note:
 - **08 — Multikey / array bounds:** the un-intersected two-sided range,
   `$elemMatch` vs dotted paths, `$all` is not an intersection, and a multikey
   index still covering its scalar prefix.
+- **09 — `SORT`, range bounds, and the plan cache:** an ESR index removes the
+  blocking `SORT` (preferred even at equal `keysExamined`); sort direction is
+  per-pattern (exact match or exact mirror), not per-key; the planner accepts a
+  much wider scan to avoid a blocking stage; and the replan frontier fires the
+  same way for a range bound width and a `$in` arity swing as for an equality's
+  row count.
 
 ## Related topics
 
