@@ -1,12 +1,22 @@
 import type { MetadataRoute } from "next";
 
+import { publishedCompetencyParams } from "@/data/competencies";
 import { routing } from "@/i18n/routing";
+import { getAllEngineeringContent } from "@/lib/engineering-content";
 
 const SITE_URL = "https://maurocunsolo.xyz";
-const PATHS = ["", "/projects", "/npm", "/opensource"];
+const STATIC_PATHS = ["", "/projects", "/npm", "/opensource", "/engineering"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return PATHS.map((path) => ({
+  const paths = [
+    ...STATIC_PATHS,
+    ...getAllEngineeringContent().map((item) => `/engineering/${item.slug}`),
+    ...publishedCompetencyParams().map(
+      ({ slug, skill }) => `/engineering/${slug}/${skill}`,
+    ),
+  ];
+
+  return paths.map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),
     alternates: {

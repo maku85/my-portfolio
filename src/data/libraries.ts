@@ -42,13 +42,15 @@ export const libraries: Library[] = [
   {
     name: "awilix-graph",
     installCommand: "npm install awilix-graph",
-    description: "CLI and library to inspect an Awilix DI container and generate visual dependency graphs (Mermaid, DOT, JSON, HTML).",
+    description:
+      "CLI and library to inspect an Awilix DI container and generate visual dependency graphs (Mermaid, DOT, JSON, HTML).",
     link: "https://github.com/maku85/awilix-graph",
   },
   {
     name: "stripe-test-utils",
     installCommand: "npm install stripe-test-utils",
-    description: "Test utilities for Node.js + Stripe - type-safe event factories, signed webhooks, scenario builders, and Jest/Vitest matchers.",
+    description:
+      "Test utilities for Node.js + Stripe - type-safe event factories, signed webhooks, scenario builders, and Jest/Vitest matchers.",
     link: "https://github.com/maku85/stripe-test-utils",
   },
 ];

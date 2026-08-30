@@ -16,6 +16,8 @@ const cardVariants = {
 export function NpmCard({ project }: { project: Library }) {
   return (
     <motion.div
+      id={project.name}
+      className="scroll-mt-24"
       variants={cardVariants}
       initial="initial"
       animate="animate"

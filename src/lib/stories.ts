@@ -43,18 +43,22 @@ export interface Collection {
 export function getCollectionsAndChapters(lang: string): Collection[] {
   const langPath = path.join(storiesRootDirectory, lang);
   if (!fs.existsSync(langPath)) return [];
-  const collections = fs.readdirSync(langPath).filter((c) => fs.statSync(path.join(langPath, c)).isDirectory());
+  const collections = fs
+    .readdirSync(langPath)
+    .filter((c) => fs.statSync(path.join(langPath, c)).isDirectory());
   return collections.map((collection) => {
     const collectionPath = path.join(langPath, collection);
-    
-    // Load metadata if exists
+
     let metadata: CollectionMetadata | undefined;
     const metaPath = path.join(collectionPath, "metadata.json");
     if (fs.existsSync(metaPath)) {
       try {
         metadata = JSON.parse(fs.readFileSync(metaPath, "utf8"));
       } catch (e) {
-        console.error(`Error parsing metadata for collection ${collection}:`, e);
+        console.error(
+          `Error parsing metadata for collection ${collection}:`,
+          e,
+        );
       }
     }
 
@@ -81,8 +85,17 @@ export function getCollectionsAndChapters(lang: string): Collection[] {
   });
 }
 
-export function getChapterByPath(lang: string, collection: string, slug: string): Chapter | null {
-  const filePath = path.join(storiesRootDirectory, lang, collection, `${slug}.md`);
+export function getChapterByPath(
+  lang: string,
+  collection: string,
+  slug: string,
+): Chapter | null {
+  const filePath = path.join(
+    storiesRootDirectory,
+    lang,
+    collection,
+    `${slug}.md`,
+  );
   if (!fs.existsSync(filePath)) return null;
   const file = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(file);
