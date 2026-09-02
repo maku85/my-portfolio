@@ -65,7 +65,8 @@ Mechanism plus the builder's own log, checked against a small reproducible lab
 - **A miss cascades to every step below it.** The cache key of a step includes
   its parent's result digest, so once step `k` rebuilds, `k + 1` has a new
   parent and rebuilds too, and so on to the end. The later steps' commands being
-  byte-identical does not save them.
+  byte-identical does not save them. Measured exactly: a chain of `n` `RUN`
+  steps, change step `k`, and `n - k + 1` rebuild, every time.
 - **`COPY . .` is the usual cache-buster.** Its key covers every file in the
   context (minus `.dockerignore`), so any source edit changes it. Anything below
   a broad `COPY` pays for that edit. Copy `package.json` alone, install, then
@@ -78,8 +79,16 @@ Mechanism plus the builder's own log, checked against a small reproducible lab
   locally".
 - **`CACHED` is trustworthy; a fast `DONE` is not the same thing.** A step that
   ran but finished quickly still ran. Only `CACHED` means the layer was reused.
-- **Image size is a separate axis from cache behaviour.** The lab's two variants
-  build byte-identical final images; only the rebuild path differs.
+- **Image size is a separate axis from cache behaviour.** Experiment 01's two
+  variants build same-size final images; only the rebuild path differs.
+
+> Done (companion lab, experiments 02, 05): the cascade is exact. A chain of
+> `n` `RUN` steps with step `k` changed rebuilds `n - k + 1` steps at every
+> position swept (`n` up to 16), no more and no fewer. And a `.dockerignore`
+> that excludes a `node_modules` + `logs` tree cut the context transfer from
+> 5.0 MB to 146 B, cut the image from 15.3 MB to 10.3 MB, and kept `COPY . .`
+> a cache hit when a file inside the ignored tree changed. Without it, that
+> unused file busted `COPY . .`.
 
 ## Technical details
 
@@ -164,6 +173,6 @@ build contexts (a Dockerfile plus the files it copies) from a fixed template per
 experiment, each built with the real `docker build --progress=plain`, with the
 verbatim log and the exact context committed under `results/`. Counter-based
 (which steps report `CACHED`, `docker history` sizes), not a wall-clock
-benchmark. Experiment 01 (layer cache ordering) is run; invalidation cascade,
-`RUN --mount=type=cache`, image-size myths and `.dockerignore` are designed and
-pending.
+benchmark. Run: experiment 01 (layer cache ordering), 02 (invalidation cascade,
+exact `n - k + 1`), 05 (`.dockerignore` and context). Designed and pending: 03
+(`RUN --mount=type=cache`), 04 (image-size myths).
