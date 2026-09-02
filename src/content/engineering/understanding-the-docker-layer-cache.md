@@ -10,7 +10,7 @@ date: "2026-09-02"
 status: published
 featured: true
 slug: understanding-the-docker-layer-cache
-related: []
+related: ["understanding-docker-image-size"]
 ---
 
 ## Context
@@ -143,12 +143,13 @@ churn.
   at all. The key mechanics are the same, the plumbing is not, and this note
   does not cover it.
 - **`RUN --mount=type=cache` is a separate mechanism.** It keeps a package
-  manager's download cache across builds without a layer, and it changes the
-  "the `RUN` layer missed, so everything re-downloaded" story. Its own
-  experiment.
-- **Multi-stage and image size** are only touched here (both lab variants come
-  out the same size). Whether a later `rm` shrinks an image, and how much
-  multi-stage actually saves, is a separate experiment.
+  manager's download cache across builds without a layer, so a busted `RUN` no
+  longer means "re-download everything". Experiment 03 measured it: after the
+  `RUN` layer is busted, a `plain` build fails an offline install while a
+  `cachemount` build still works, and the image size is unchanged.
+- **Image size is its own note.** Whether a later `rm` shrinks an image and how
+  much multi-stage saves are covered separately (experiment 04: a late `rm`
+  leaves the image 52 MB larger, multi-stage is 255 MB smaller).
 - **BuildKit version.** Cache-key details and `--progress=plain` formatting have
   shifted across BuildKit releases. The lab records the version it ran on.
 - **No multi-platform.** `buildx` with QEMU or multiple native nodes changes
@@ -173,6 +174,6 @@ build contexts (a Dockerfile plus the files it copies) from a fixed template per
 experiment, each built with the real `docker build --progress=plain`, with the
 verbatim log and the exact context committed under `results/`. Counter-based
 (which steps report `CACHED`, `docker history` sizes), not a wall-clock
-benchmark. Run: experiment 01 (layer cache ordering), 02 (invalidation cascade,
-exact `n - k + 1`), 05 (`.dockerignore` and context). Designed and pending: 03
-(`RUN --mount=type=cache`), 04 (image-size myths).
+benchmark. Run: 01 (layer cache ordering), 02 (invalidation cascade, exact
+`n - k + 1`), 03 (`RUN --mount=type=cache`), 04 (image-size myths), 05
+(`.dockerignore` and context). The image-size results have their own note.
