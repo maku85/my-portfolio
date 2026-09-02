@@ -192,6 +192,48 @@ export const competencies: Competency[] = [
     topics: [],
   },
   {
+    slug: "docker",
+    area: "cloud-infrastructure",
+    title: "Docker",
+    tagline: {
+      en: "Field notes on the build cache",
+      it: "Appunti sulla cache di build",
+    },
+    description: {
+      en: "Docker is how the Node.js services and CLIs I work on get packaged and run in CI and locally.",
+      it: "Docker è il modo in cui i servizi Node.js e le CLI su cui lavoro vengono impacchettati ed eseguiti in CI e in locale.",
+    },
+    experience: {
+      en: "The material here comes from packaging Node.js apps: build times that crept up, images that grew, and cache hits that vanished after an unrelated change. It isn't exhaustive and it isn't the manual — it's what actually came up.",
+      it: "Il materiale qui nasce dall'impacchettare app Node.js: build time che crescono, immagini che si gonfiano, e cache hit che spariscono dopo una modifica non correlata. Non è esaustivo e non è il manuale: è ciò che è emerso davvero.",
+    },
+    scope: {
+      en: "This collection is about the BuildKit build cache and image size: layer invalidation, cache mounts, what makes a rebuild fast or slow. Container runtime, networking and orchestration are out of scope here.",
+      it: "Questa raccolta riguarda la cache di build di BuildKit e la dimensione delle immagini: invalidazione dei layer, cache mount, cosa rende un rebuild veloce o lento. Runtime dei container, networking e orchestrazione sono fuori ambito.",
+    },
+    experienceLevel: "familiar",
+    status: "active",
+    topics: [
+      "Docker",
+      "BuildKit",
+      { en: "Build cache", it: "Cache di build" },
+      { en: "Layer invalidation", it: "Invalidazione dei layer" },
+      { en: "Image size", it: "Dimensione delle immagini" },
+      "Dockerfile",
+      { en: "Multi-stage builds", it: "Build multi-stage" },
+    ],
+    contentMatch: [
+      "build-cache",
+      "layer-invalidation",
+      "buildkit",
+      "image-size",
+      "dockerfile",
+    ],
+    relatedCompetencies: ["backend/nodejs"],
+    updatedAt: "2026-09-02",
+    published: true,
+  },
+  {
     slug: "postgresql",
     area: "data",
     title: "PostgreSQL",
