@@ -5,7 +5,14 @@ import { routing } from "@/i18n/routing";
 import { getAllEngineeringContent } from "@/lib/engineering-content";
 
 const SITE_URL = "https://maurocunsolo.xyz";
-const STATIC_PATHS = ["", "/projects", "/npm", "/opensource", "/engineering"];
+const STATIC_PATHS = [
+  "",
+  "/projects",
+  "/games",
+  "/npm",
+  "/opensource",
+  "/engineering",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [

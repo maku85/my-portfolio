@@ -142,6 +142,10 @@
     "engineering": {
       "title": "Engineering",
       "description": "A personal knowledge hub - technical areas, notes, experiments and projects by Mauro Cunsolo, across backend, cloud infrastructure and data."
+    },
+    "games": {
+      "title": "Unity Games",
+      "description": "Games and prototypes built with Unity by Mauro Cunsolo, ready to play in your browser."
     }
   },
   "LibrariesCard": {
@@ -195,5 +199,18 @@
     "subtitle": "Portfolio & Open Source",
     "text": "I'm developing new features for my portfolio and contributing to open source projects. Follow me on GitHub for updates!",
     "buttonLabel": "Go to GitHub"
+  },
+  "GamesCard": {
+    "title": "My Games",
+    "text": "Games and prototypes built with Unity, ready to play in your browser.",
+    "buttonLabel": "Go to Games"
+  },
+  "GamesPage": {
+    "title": "My Games",
+    "subtitle": "Games and prototypes built with Unity. Choose a game and play in your browser.",
+    "backToHome": "Back to Home",
+    "noGames": "No games available yet.",
+    "checkBackLater": "Check back soon to try the first games!",
+    "play": "Play now"
   }
 }
