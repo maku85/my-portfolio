@@ -42,4 +42,13 @@ export const projects: Project[] = [
     buttonIcon: null,
     buttonHref: "https://maku85.github.io/benchyx/",
   },
+  {
+    imageUrl: "/projects/the-card-club.webp",
+    name: "The Card Club",
+    description:
+      "Card game rules in Italian: searchable catalog, score keeper and offline PWA.",
+    buttonLabel: "View site",
+    buttonIcon: null,
+    buttonHref: "https://thecardclub.netlify.app/",
+  },
 ];
