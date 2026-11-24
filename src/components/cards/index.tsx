@@ -1,5 +1,4 @@
 import AboutCard from "./AboutCard";
-import EngineeringCard from "./EngineeringCard";
 import ExperiencesCard from "./ExperiencesCard";
 import GamesCard from "./GamesCard";
 import LibrariesCard from "./LibrariesCard";
@@ -7,14 +6,15 @@ import ProjectsCard from "./ProjectsCard";
 import SkillsCard from "./SkillsCard";
 import SocialsCard from "./SocialsCard";
 import WelcomeCard from "./WelcomeCard";
+import WIPCard from "./WIPCard";
 
 export const initialCards = [
   WelcomeCard,
   AboutCard,
-  EngineeringCard,
+  WIPCard,
   ProjectsCard,
-  GamesCard,
   LibrariesCard,
+  GamesCard,
   ExperiencesCard,
   SkillsCard,
   SocialsCard,
