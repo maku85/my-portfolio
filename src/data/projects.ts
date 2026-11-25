@@ -9,13 +9,13 @@ interface Project {
 
 export const projects: Project[] = [
   {
-    imageUrl: "/projects/cineshpere.webp",
-    name: "CineSphere",
+    imageUrl: "/projects/rowseven.webp",
+    name: "Row Seven",
     description:
-      "Movies and TV shows discovery app using The Movie Database API.",
-    buttonLabel: "View demo",
+      "Discover movies and TV series, see where to stream them and keep a watchlist.",
+    buttonLabel: "View site",
     buttonIcon: null,
-    buttonHref: "https://pegasus-chi-jade.vercel.app",
+    buttonHref: "https://rowseven.netlify.app/",
   },
   {
     imageUrl: "/projects/mindutrition.webp",
