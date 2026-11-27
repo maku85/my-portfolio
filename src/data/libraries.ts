@@ -14,12 +14,6 @@ export const libraries: Library[] = [
     link: "https://github.com/maku85/orvaxis",
   },
   {
-    name: "vemora",
-    installCommand: "npm install vemora",
-    description: "Repository-local memory system for LLM-assisted development.",
-    link: "https://github.com/maku85/vemora",
-  },
-  {
     name: "mongoose-lens",
     installCommand: "npm install mongoose-lens",
     description:
