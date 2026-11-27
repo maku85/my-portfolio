@@ -9,6 +9,15 @@ interface Project {
 
 export const projects: Project[] = [
   {
+    imageUrl: "/projects/procura.webp",
+    name: "procura",
+    description:
+      "Identity-aware gateway for MCP: every agent tool call is tied to the user it acts for, checked by policy, redacted and written to a tamper-evident audit log.",
+    buttonLabel: "View on GitHub",
+    buttonIcon: null,
+    buttonHref: "https://github.com/maku85/procura",
+  },
+  {
     imageUrl: "/projects/rowseven.webp",
     name: "Row Seven",
     description:
