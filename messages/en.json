@@ -144,8 +144,8 @@
       "description": "A personal knowledge hub - technical areas, notes, experiments and projects by Mauro Cunsolo, across backend, cloud infrastructure and data."
     },
     "games": {
-      "title": "Unity Games",
-      "description": "Games and prototypes built with Unity by Mauro Cunsolo, ready to play in your browser."
+      "title": "Games",
+      "description": "Games and prototypes by Mauro Cunsolo, ready to play in your browser."
     }
   },
   "LibrariesCard": {
@@ -202,12 +202,12 @@
   },
   "GamesCard": {
     "title": "My Games",
-    "text": "Games and prototypes built with Unity, ready to play in your browser.",
+    "text": "Games and prototypes, ready to play in your browser.",
     "buttonLabel": "Go to Games"
   },
   "GamesPage": {
     "title": "My Games",
-    "subtitle": "Games and prototypes built with Unity. Choose a game and play in your browser.",
+    "subtitle": "Games and prototypes. Choose a game and play in your browser.",
     "backToHome": "Back to Home",
     "noGames": "No games available yet.",
     "checkBackLater": "Check back soon to try the first games!",

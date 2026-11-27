@@ -46,7 +46,7 @@ export default function GamesClient() {
               key={game.name}
               imageUrl={game.imageUrl ?? "/games.webp"}
               title={game.name}
-              subtitle="Unity"
+              subtitle={game.tech}
               text={localize(game.description, locale)}
               buttonLabel={t("play")}
               buttonIcon={<FaPlay aria-hidden="true" />}

@@ -144,8 +144,8 @@
       "description": "Un knowledge hub personale - aree tecniche, note, esperimenti e progetti di Mauro Cunsolo, tra backend, infrastruttura cloud e dati."
     },
     "games": {
-      "title": "Giochi Unity",
-      "description": "Giochi e prototipi realizzati con Unity da Mauro Cunsolo, da provare nel browser."
+      "title": "Giochi",
+      "description": "Giochi e prototipi di Mauro Cunsolo, da provare nel browser."
     }
   },
   "LibrariesCard": {
@@ -202,12 +202,12 @@
   },
   "GamesCard": {
     "title": "I miei giochi",
-    "text": "Giochi e prototipi realizzati con Unity, da provare direttamente nel browser.",
+    "text": "Giochi e prototipi, da provare direttamente nel browser.",
     "buttonLabel": "Vai ai giochi"
   },
   "GamesPage": {
     "title": "I miei giochi",
-    "subtitle": "Giochi e prototipi realizzati con Unity. Scegli un gioco e provalo nel browser.",
+    "subtitle": "Giochi e prototipi. Scegli un gioco e provalo nel browser.",
     "backToHome": "Torna alla Home",
     "noGames": "Nessun gioco disponibile al momento.",
     "checkBackLater": "Torna presto per provare i primi giochi!",
